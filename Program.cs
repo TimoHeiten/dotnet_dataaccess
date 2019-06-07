@@ -28,6 +28,7 @@ namespace code
             {
                 ["ado.connect"] = ado.connect.Connecting.Run,
                 ["ado.reader"] = ado.readers.DataReaders.Run,
+                ["ado.params"] = ado.parameters.Param.Run
             };
         }
 
