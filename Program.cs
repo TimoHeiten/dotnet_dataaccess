@@ -30,7 +30,9 @@ namespace code
                 ["ado.reader"] = ado.readers.DataReaders.Run,
                 ["ado.params"] = ado.parameters.Param.Run,
                 ["ado.cmds"] = ado.commands.Scalars.Run,
-                ["ado.adapter"] = ado.adapter.DataAdapters.Run
+                ["ado.adapter"] = ado.adapter.DataAdapters.Run,
+                ["ado.adapter.cmds"] = ado.adapter.Commands.Run,
+                ["ado.transaction"] = ado.transaction.Acid.Run,
             };
         }
 
