@@ -13,21 +13,18 @@ namespace code.ado.transaction
             "INSERT INTO Orders (name, customerId) VALUES ('ordered', 111)";
         public static void Run()
         {
-            Exceptional();
+            // Except(Constants.GetSqliteConnection());
+            // Except(Constants.GetPsqlConnection(), "psql");
+            Transactional(Constants.GetSqliteConnection());
+            Transactional(Constants.GetPsqlConnection(), "psql");
         }
 
-        public static void Exceptional()
+        private static void Except(DbConnection connection, string provider = "sqlite")
         {
-            Insert(Constants.GetSqliteConnection());
-            Insert(Constants.GetPsqlConnection(), "psql");
-        }
-
-        private static void Insert(DbConnection connection, string provider = "sqlite")
-        {
-            try
+            System.Console.WriteLine($"provider: {provider} ");
+            using (connection)
             {
-                System.Console.WriteLine($"provider: {provider} ");
-                using (connection)
+                try
                 {
                     connection.Open();
                     using (var cmd = connection.CreateCommand())
@@ -36,58 +33,56 @@ namespace code.ado.transaction
                         cmd.ExecuteNonQuery();
                     }
                 }
-            }
-            catch (System.Exception ex)
-            {
-                System.Console.WriteLine(ex.Message);
-                System.Console.WriteLine(ex.GetType().Name);
+                catch (System.Exception ex)
+                {
+                    System.Console.WriteLine("threw!");
+                    System.Console.WriteLine(ex.Message);
+                    System.Console.WriteLine(ex.GetType().Name);
+                }
+                
             }
         }
 
-
-
         public static void Transactional(DbConnection connection, string provider = "sqlite")
         {
-            string UPDATE = 
-                "UPDATE Customers SET Id=42 WHERE id=1";
-            string INSERT = 
-                "INSERT INTO Orders (name, CustomerId) VALUES ('ordered', 1)";
-            
-            System.Console.WriteLine($"provider: {provider} ");
+            string UPDATE = "UPDATE Customers SET Name='abc' WHERE id=1";
+            System.Console.WriteLine($"transaction with: {provider} ");
 
             DbTransaction transaction = null;
-            try
-            {
-                using (connection)
-                {
-                    connection.Open();
-                    using (var cmd = connection.CreateCommand())
-                    {
-                        cmd.CommandText = UPDATE;
-                        int affected = cmd.ExecuteNonQuery();
-                        System.Console.WriteLine($"update affected: {affected}");
-                    }
-                    using (var cmd2 = connection.CreateCommand())
-                    {
-                        cmd2.CommandText = INSERT;
-                        cmd2.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (System.Exception ex)
+            using (connection)
             {
                 try
                 {
-                    transaction.Rollback();
-                    System.Console.WriteLine(ex.Message);
+                    connection.Open();
+                    transaction = connection.BeginTransaction();
+                    
+                    var cmd = connection.CreateCommand();
+                    cmd.CommandText = UPDATE;
+                    int affected = cmd.ExecuteNonQuery();
+                    System.Console.WriteLine($"UPDATE affected: {affected} rows");
+
+                    var cmd2 = connection.CreateCommand();
+                    cmd2.CommandText = INSERT_FAIL;
+                    cmd2.ExecuteNonQuery();
+
+                    System.Console.WriteLine("committing!");
+                    transaction.Commit();
                 }
-                catch (System.Exception ex2)
+                catch (System.Exception ex)
                 {
-                    System.Console.WriteLine(ex2.Message);
+                    try
+                    {
+                        System.Console.WriteLine("rolling back!");
+                        transaction.Rollback();
+                        System.Console.WriteLine(ex.Message);
+                    }
+                    catch (System.Exception ex2)
+                    {
+                        System.Console.WriteLine(ex2.Message);
+                    }
                 }
             }
-           
-
+            
         }
     }
 }
