@@ -15,5 +15,8 @@ namespace code.ef.Models
         public string Lastname { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }
+
+        public override string ToString()
+            => $"Customer: {Lastname}, {Name}";
     }
 }

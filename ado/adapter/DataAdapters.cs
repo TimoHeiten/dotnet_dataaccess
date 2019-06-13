@@ -11,7 +11,7 @@ namespace code.ado.adapter
 {
     internal class DataAdapters
     {
-        private static string SELECT = "SELECT Id, Name, Lastname FROM Customers;";
+        // private static string SELECT = "SELECT Id, Name, Lastname FROM Customers;";
 
         internal static void Run()
         {
@@ -29,11 +29,11 @@ namespace code.ado.adapter
             where T : DbDataAdapter, new()
         {
             System.Console.WriteLine("provider: " + provider);
-            var data = new DataSet();
-            using (connection)
-            {
+            // var data = new DataSet();
+            // using (connection)
+            // {
 
-            }
+            // }
         }
     }
 }

@@ -34,6 +34,8 @@ namespace code
                 ["ado.adapter.cmds"] = ado.adapter.Commands.Run,
                 ["ado.transaction"] = ado.transaction.Acid.Run,
 
+                ["ef.commands"] = ef.Commands.Run,
+
                 // ["files.plain"] = 
                 ["files.csv"] = files.csv.Reader.Run,
             };
