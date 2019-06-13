@@ -32,24 +32,7 @@ namespace code.ado.adapter
             var data = new DataSet();
             using (connection)
             {
-                var adapter = GetAdapter<T>();
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = SELECT;
-                adapter.SelectCommand = cmd;
 
-                adapter.Fill(data);
-            }
-
-            foreach (DataRow row in data.Tables[0].Rows)
-            {
-                var customer = new 
-                {
-                    Id = row["Id"],
-                    Name = row["Name"],
-                    LastName = row["LastName"]
-                };
-
-                System.Console.WriteLine(customer);
             }
         }
     }

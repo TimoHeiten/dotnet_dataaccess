@@ -10,3 +10,7 @@
 /Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/obj/Debug/netcoreapp2.1/code.AssemblyInfo.cs
 /Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/obj/Debug/netcoreapp2.1/code.dll
 /Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/obj/Debug/netcoreapp2.1/code.pdb
+/Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/bin/Debug/netcoreapp2.1/data/files/customers.json
+/Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/bin/Debug/netcoreapp2.1/data/files/customers.csv
+/Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/bin/Debug/netcoreapp2.1/data/files/customers.xml
+/Users/timoheiten/OneDrive/Company/Projects/Udemy_courses/dotnet/dataaccess/code/bin/Debug/netcoreapp2.1/data/files/orders.csv
