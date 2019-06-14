@@ -35,7 +35,8 @@ namespace code
                 ["ado.transaction"] = ado.transaction.Acid.Run,
 
                 ["ef.commands"] = ef.Commands.Run,
-
+                ["dapper.queries"] = dapper.Queries.Run,
+                ["dapper.commands"] = dapper.Commands.Run,
                 // ["files.plain"] = 
                 ["files.csv"] = files.csv.Reader.Run,
             };
