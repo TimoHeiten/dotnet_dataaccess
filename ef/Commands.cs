@@ -12,7 +12,65 @@ namespace code.ef
         public static void Run()
         {
             // SelectAll();
-            InnerJoin();
+            // InnerJoin();
+            // Insert();
+            // Update();
+            // Delete();
+            Raw();
+        }
+
+        private static void Raw()
+        {
+            string raw = @"
+                SELECT * FROM customers;
+            ";
+            using (var context = new udemyContext())
+            {
+                var customers = context.Customers.FromSql(raw);
+                foreach (var item in customers)
+                {
+                    System.Console.WriteLine(item);
+                }
+            }
+        }
+
+        private static void Insert()
+        {
+            // INSERT INTO Customers (name, lastname) VALUES ('customer', 'from ef');
+            var customer = new Customers
+            {
+                Name = "customer",
+                Lastname = "from ef"
+            };
+            System.Console.WriteLine(customer);
+            using (var context = new udemyContext())
+            {
+                context.Add(customer);
+                //unit of work:
+                context.SaveChanges();
+            }
+        }
+
+        private static void Update()
+        {
+            using (var context = new udemyContext())
+            {
+                Customers fromEf = context.Set<Customers>().Find(6);
+                fromEf.Name = "updated";
+                context.SaveChanges();
+            }
+        }
+
+        private static void Delete()
+        {
+            using (var context = new udemyContext())
+            {
+                Customers updated = context.Set<Customers>()
+                                            .Where(c => c.Id == 6)
+                                            .FirstOrDefault();
+                context.Remove(updated);
+                context.SaveChanges();
+            }
         }
 
         private static void SelectAll()
