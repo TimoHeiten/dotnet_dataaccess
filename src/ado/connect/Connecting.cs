@@ -19,7 +19,7 @@ namespace code.ado.connect
             // set off query
             // print
             ConnectSqlite();
-            ConnectNpgsql();
+            // ConnectNpgsql();
         }
 
         private static void RunSelectAll(DbConnection connection, string provider="sqlite")
