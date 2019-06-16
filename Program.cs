@@ -39,6 +39,8 @@ namespace code
                 ["dapper.commands"] = dapper.Commands.Run,
                 // ["files.plain"] = 
                 ["files.csv"] = files.csv.Reader.Run,
+
+                ["nosql.mongo"] = nosql.Mongo.Run
             };
         }
 
