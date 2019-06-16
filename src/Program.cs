@@ -40,7 +40,8 @@ namespace code
                 // ["files.plain"] = 
                 ["files.csv"] = files.csv.Reader.Run,
 
-                ["nosql.mongo"] = nosql.Mongo.Run
+                ["nosql.mongo"] = nosql.Mongo.Run,
+                ["nosql.redis"] = nosql.redis.Commands.Run
             };
         }
 

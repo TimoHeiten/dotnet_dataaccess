@@ -9,5 +9,10 @@ namespace nosql
     {
         public string Text { get; set; }
         public int Costs { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }
