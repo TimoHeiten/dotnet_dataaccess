@@ -37,8 +37,6 @@ namespace code
                 ["ef.commands"] = ef.Commands.Run,
                 ["dapper.queries"] = dapper.Queries.Run,
                 ["dapper.commands"] = dapper.Commands.Run,
-                // ["files.plain"] = 
-                ["files.csv"] = files.csv.Reader.Run,
 
                 ["nosql.mongo"] = nosql.Mongo.Run,
                 ["nosql.redis"] = nosql.redis.Commands.Run
