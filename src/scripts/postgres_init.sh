@@ -1,3 +1,4 @@
+#! /bin/bash
 docker container run -d --name postgres -p 5432:5432 -e POSTGRES_DB=udemy -e POSTGRES_USER=udemy postgres:10-alpine
 
 sleep 10
