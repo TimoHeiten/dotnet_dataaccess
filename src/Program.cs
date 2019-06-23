@@ -26,18 +26,6 @@ namespace code
         {
             s_runner = new Dictionary<string, Action>
             {
-                ["ado.connect"] = ado.connect.Connecting.Run,
-                ["ado.reader"] = ado.readers.DataReaders.Run,
-                ["ado.params"] = ado.parameters.Param.Run,
-                ["ado.cmds"] = ado.commands.Scalars.Run,
-                ["ado.adapter"] = ado.adapter.DataAdapters.Run,
-                ["ado.adapter.cmds"] = ado.adapter.Commands.Run,
-                ["ado.transaction"] = ado.transaction.Acid.Run,
-
-                ["ef.commands"] = ef.Commands.Run,
-                ["dapper.queries"] = dapper.Queries.Run,
-                ["dapper.commands"] = dapper.Commands.Run,
-
                 ["nosql.mongo"] = nosql.Mongo.Run,
                 ["nosql.redis"] = nosql.redis.Commands.Run
             };
