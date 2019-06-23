@@ -29,9 +29,13 @@ namespace nosql
             string connection = "mongodb://localhost:27017";
             var client = new MongoClient(connection);
             IMongoDatabase db = client.GetDatabase("udemy"); // creates it
-            db.CreateCollection("customers");
+            var collection = db.GetCollection<BsonDocument>("customers");
+            if (collection == null)
+            {
+                db.CreateCollection("customers");
+            }
 
-            return db.GetCollection<BsonDocument>("customers");
+            return collection ?? db.GetCollection<BsonDocument>("customers");
         }
 
         private static void Create()
