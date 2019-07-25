@@ -29,7 +29,7 @@ namespace code.ado.commands
                 dbConnection.Open();
                 using (var cmd = dbConnection.CreateCommand())
                 {
-                    cmd.CommandText = DELETE;
+                    cmd.CommandText = "DELETE FROM Orders WHERE name = 'updated'";
                     int scalar = cmd.ExecuteNonQuery();
                     System.Console.WriteLine($"rows affected: {scalar}");
                 }

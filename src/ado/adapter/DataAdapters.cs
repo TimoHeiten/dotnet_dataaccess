@@ -11,7 +11,7 @@ namespace code.ado.adapter
 {
     internal class DataAdapters
     {
-        // private static string SELECT = "SELECT Id, Name, Lastname FROM Customers;";
+        private static string SELECT = "SELECT Id, Name, Lastname FROM Customers;";
 
         internal static void Run()
         {
@@ -28,12 +28,26 @@ namespace code.ado.adapter
         private static void Read<T>(DbConnection connection, string provider="sqlite")
             where T : DbDataAdapter, new()
         {
-            System.Console.WriteLine("provider: " + provider);
-            // var data = new DataSet();
-            // using (connection)
-            // {
+            string select_query = "SELECT Id, Name, Lastname FROM Customers;";
+            var data = new DataSet();
+            using (connection)
+            {
+                connection.Open();
+                using(var adapter = new Npgsql.NpgsqlDataAdapter())
+                {
+                    using (var cmd = (Npgsql.NpgsqlCommand)connection.CreateCommand())
+                    {
+                        cmd.CommandText = select_query;
+                        adapter.SelectCommand = cmd;
+                        adapter.Fill(data);
+                    }
+                }
+            }
 
-            // }
+            foreach (DataRow row in data.Tables[0].Rows)
+            {
+                System.Console.WriteLine($"{row["Id"]} : {row["Name"]}");
+            }
         }
     }
 }

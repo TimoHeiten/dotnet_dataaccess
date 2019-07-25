@@ -57,12 +57,13 @@ namespace code.ado.transaction
                     transaction = connection.BeginTransaction();
                     
                     var cmd = connection.CreateCommand();
-                    cmd.CommandText = UPDATE;
+                    cmd.CommandText = "UPDATE Customers SET Name='abc' WHERE id=1";
                     int affected = cmd.ExecuteNonQuery();
                     System.Console.WriteLine($"UPDATE affected: {affected} rows");
 
                     var cmd2 = connection.CreateCommand();
-                    cmd2.CommandText = INSERT_FAIL;
+                    // will fail!
+                    cmd2.CommandText = "INSERT INTO Orders (name, customerId) VALUES ('ordered', 111)";
                     cmd2.ExecuteNonQuery();
 
                     System.Console.WriteLine("committing!");
