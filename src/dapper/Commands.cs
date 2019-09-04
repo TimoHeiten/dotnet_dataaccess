@@ -29,33 +29,19 @@ namespace dapper
 
         private static void Insert()
         {
+            string sqlInsert = @"
+            INSERT INTO Customers (name, lastname) VALUES (@name, @lastname);
+        ";
             using (var connection = GetConnection())
             {
                 int affectedRows = connection.Execute(
-                    insert,
+                    sqlInsert,
                     new { name = "inserted", lastname = "delete_me"}
                 );
             }
         }
 
-        private static void InsertMany()
-        {
-            using (var connection = GetConnection())
-            {
-                int affectedRows = connection.Execute(
-                    insert,
-                    new []
-                    {
-                        new { name = "inserted", lastname = "delete_me"},
-                        new { name = "forUpdate", lastname = "delete_me"},
-                        new { name = "forUpdate", lastname = "delete_me"},
-                    }
-                );
-                System.Console.WriteLine($"affected: {affectedRows}");
-            }
-        }
-
-        private static void Update()
+         private static void Update()
         {
             using (var connection = GetConnection())
             {
@@ -76,5 +62,24 @@ namespace dapper
                 System.Console.WriteLine($"affected: {affected}");
             }
         }
+
+        private static void InsertMany()
+        {
+            using (var connection = GetConnection())
+            {
+                int affectedRows = connection.Execute(
+                    insert,
+                    new []
+                    {
+                        new { name = "inserted", lastname = "delete_me"},
+                        new { name = "forUpdate", lastname = "delete_me"},
+                        new { name = "forUpdate", lastname = "delete_me"},
+                    }
+                );
+                System.Console.WriteLine($"affected: {affectedRows}");
+            }
+        }
+
+       
     }
 }

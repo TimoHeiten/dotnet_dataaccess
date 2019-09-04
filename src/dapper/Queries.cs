@@ -9,15 +9,14 @@ namespace dapper
 {
     internal class Queries
     {
-        // private static string sql = "SELECT * FROM Customers";
-        private static string joinSql = @"
-            SELECT 
-                c.*,
-                o.*
-            FROM Customers c
-            INNER JOIN Orders o
-            ON o.CustomerId = c.id
-            ";
+        // private static string joinSql = @"
+        //     SELECT 
+        //         c.*,
+        //         o.*
+        //     FROM Customers c
+        //     INNER JOIN Orders o
+        //     ON o.CustomerId = c.id
+        //     ";
 
         public static void Run()
         {
@@ -30,20 +29,29 @@ namespace dapper
         {
             using (var connection = new Npgsql.NpgsqlConnection(Constants.PSQL_CONNECTION))
             {
-                // var customers = connection.Query(sql).FirstOrDefault();
-                // System.Console.WriteLine(customers);
+                var customers = connection.Query(sql).FirstOrDefault();
+                System.Console.WriteLine(customers);
+            }
+        }
+        private static string sql = "SELECT * FROM Customers";
+        private static void ReadStrong()
+        {
+            using (var connection = new Npgsql.NpgsqlConnection(Constants.PSQL_CONNECTION))
+            {
+                var customers = connection.Query<Customer>(sql).ToList();
+                System.Console.WriteLine(string.Join(Environment.NewLine, customers));
             }
         }
 
-        private static void ReadStrong()
-        {
-            // using (var connection = new Npgsql.NpgsqlConnection(Constants.PSQL_CONNECTION))
-            // {
-            //     var customers = connection.Query<Customer>(sql).ToList();
-            //     System.Console.WriteLine(string.Join(Environment.NewLine, customers));
-            // }
-        }
 
+        private static string joinSql = @"
+            SELECT 
+            c.*,
+            o.*
+            FROM Customers c
+            INNER JOIN Orders o
+            ON o.CustomerId = c.id
+        ";
         private static void Join()
         {
             List<Customer> customers;
