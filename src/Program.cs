@@ -38,6 +38,8 @@ namespace code
                 ["dapper.queries"] = dapper.Queries.Run,
                 ["dapper.commands"] = dapper.Commands.Run,
 
+                ["dapper.parameters"] = dapper.Parameters.Run,
+
                 ["nosql.mongo"] = nosql.Mongo.Run,
                 ["nosql.redis"] = nosql.redis.Commands.Run
             };

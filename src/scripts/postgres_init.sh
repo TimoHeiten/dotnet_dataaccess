@@ -5,4 +5,4 @@ sleep 10
 docker container exec -i postgres mkdir -p /backup/
 docker cp ./../data/psql/udemy.backup postgres:/backup
 
-docker container exec -i postgres pga
+docker container exec -i postgres /bin/bash

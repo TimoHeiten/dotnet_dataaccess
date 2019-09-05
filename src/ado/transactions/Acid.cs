@@ -45,7 +45,7 @@ namespace code.ado.transaction
 
         public static void Transactional(DbConnection connection, string provider = "sqlite")
         {
-            string UPDATE = "UPDATE Customers SET Name='abc' WHERE id=1";
+            // string UPDATE = "UPDATE Customers SET Name='abc' WHERE id=1";
             System.Console.WriteLine($"transaction with: {provider} ");
 
             DbTransaction transaction = null;
