@@ -11,7 +11,7 @@ namespace code.ado.adapter
 {
     internal class DataAdapters
     {
-        private static string SELECT = "SELECT Id, Name, Lastname FROM Customers;";
+        // private static string SELECT = "SELECT Id, Name, Lastname FROM Customers;";
 
         internal static void Run()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace code
@@ -11,7 +12,7 @@ namespace code
             string key = string.Empty;
             try
             {   
-                key = args[1];
+                key = args.FirstOrDefault(x => x.Contains(".csproj") == false);
                 s_runner[key].Invoke();
             }
             catch (System.Exception ex)
@@ -39,6 +40,9 @@ namespace code
                 ["dapper.commands"] = dapper.Commands.Run,
 
                 ["dapper.parameters"] = dapper.Parameters.Run,
+                ["dapper.qversions"] = dapper.QueryVersions.Run,
+                ["dapper.dynamic"] = dapper.UseDynamicParams.Run,
+                ["dapper.multiple"] = dapper.MultipleResults.Run,
 
                 ["nosql.mongo"] = nosql.Mongo.Run,
                 ["nosql.redis"] = nosql.redis.Commands.Run
