@@ -45,7 +45,9 @@ namespace code
                 ["dapper.multiple"] = dapper.MultipleResults.Run,
 
                 ["nosql.mongo"] = nosql.Mongo.Run,
-                ["nosql.redis"] = nosql.redis.Commands.Run
+                ["nosql.redis"] = nosql.redis.Commands.Run,
+
+                ["dal.queryobjects"] = dal.queryobjects.Querying.Run,
             };
         }
 

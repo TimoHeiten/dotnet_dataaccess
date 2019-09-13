@@ -16,8 +16,8 @@ namespace nosql
                     ["$exists"] = false
                 }
             };
-            Create();
-            // CreateMany();
+            // Create();
+            CreateMany();
             // Update();
             // Delete();
             Read(new BsonDocument());
@@ -26,7 +26,7 @@ namespace nosql
 
         private static IMongoCollection<BsonDocument> Connect()
         {
-            string connection = "mongodb://localhost:27017";
+            string connection = "mongodb://localhost:5438";
             var client = new MongoClient(connection);
             IMongoDatabase db = client.GetDatabase("udemy"); // creates it
             var collection = db.GetCollection<BsonDocument>("customers");
@@ -62,8 +62,8 @@ namespace nosql
             };
             var c3 = new BsonDocument
             {
-                ["name"] = "third",
-                ["lastname"] = "customer"
+                ["Name"] = "third",
+                ["Lastname"] = "customer"
             };
             var collection = Connect();
             collection.InsertMany(new BsonDocument[]

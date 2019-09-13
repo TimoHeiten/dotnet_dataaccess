@@ -22,7 +22,7 @@ namespace code.ef.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Server=localhost;Database=udemy;User Id=udemy;Port=5433");
+                optionsBuilder.UseNpgsql("Server=localhost;Database=udemy;User Id=udemy;Port=5432");
             }
         }
 
