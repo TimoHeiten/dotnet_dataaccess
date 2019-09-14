@@ -48,6 +48,7 @@ namespace code
                 ["nosql.redis"] = nosql.redis.Commands.Run,
 
                 ["dal.queryobjects"] = dal.queryobjects.Querying.Run,
+                ["dal.repository"] = dal.repositorypattern.RepositoryQuerying.Run,
             };
         }
 
